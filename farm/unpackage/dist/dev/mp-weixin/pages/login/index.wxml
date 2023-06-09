@@ -1,0 +1,1 @@
+<view class="box data-v-4586967a"><image src="{{bgImg}}" mode="aspectFill" class="data-v-4586967a"></image><button class="clearButton btn data-v-4586967a" open-type="getUserInfo" data-event-opts="{{[['getuserinfo',[['getUserInfo',['$event']]]]]}}" bindgetuserinfo="__e"><text class="text data-v-4586967a" plain="true">授权登录</text></button></view>

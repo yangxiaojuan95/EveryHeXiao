@@ -1,0 +1,32 @@
+{
+  "loginPageProjectName": "塔盒科技",
+  "loginPageSlogan1": "塔盒科技<span style='display: inline-block; width: 1em;'></span>稳定高效",
+  "loginPageSlogan2": "生产数字化<span style='display: inline-block; width: 1em;'></span>管理无纸化",
+  "loginPageSloganAnimation": true,
+  "loginPageRigthsStartYear": 2020,
+  "loginPageRigthsReserveCompany": "塔盒科技",
+  "loginPageLogo": "/imgs/tahe/logo.svg",
+  "loginPageLogoWidth": "86px",
+  "loginPageLogoHeight": "86px",
+  "loginPageBg": "/imgs/tahe/bg@3x.png",
+
+  "navBarProjectName": "TABOX | 塔盒科技",
+  "navBarLogo": "/imgs/tahe/logo.svg",
+  "navBarLogoWidth": "50px",
+  "navBarLogoHeight": "50px",
+
+  "cssVars": {
+    "--theme": "rgb(51, 100, 255)",
+    "--subTheme": "rgb(0, 214, 186)",
+    "--themeLight": "rgba(221, 237, 253, .5)",
+    "--sideThemeActive": "#517cff",
+
+    "--el-color-primary-dark-2": "rgb(32, 84, 253)",
+    "--el-color-primary-light-3": "rgb(84, 124, 253)",
+    
+    "--loginPageSlogan1Step": 9,
+    "--loginPageSlogan2Step": 11,
+    "--loginPageSlogan1Width": "9em",
+    "--loginPageSlogan2Width": "11em"
+  }
+}

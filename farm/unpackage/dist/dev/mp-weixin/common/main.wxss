@@ -1,0 +1,162 @@
+@charset "UTF-8";
+/* 主色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 文字尺寸 */
+/* Border Radius */
+page {
+  color: #333;
+  font-size: 26rpx;
+	font-weight: 400;
+	line-height: 1.41;
+  -webkit-overflow-scrolling: touch;
+	height: 100%;
+	background: #fff;
+}
+.flex {
+  display: flex;
+}
+.flex-direction {
+	display: flex;
+  flex-direction: column;
+}
+.fg1 {
+  flex: 1;
+}
+.j-flex-end {
+  justify-content: flex-end;
+}
+.c-flex-end {
+  align-items: flex-end;
+}
+.fs0 {
+  flex-shrink: 0;
+}
+.c-center {
+  align-items: center;
+}
+.j-center {
+  justify-content: center;
+}
+.flex-between {
+	display: flex;
+  justify-content: space-between;
+}
+.flex-around {
+	display: flex;
+  justify-content: space-around;
+}
+.flex-c-center {
+	display: flex;
+	align-items: center;
+}
+.flex-j-center {
+	display: flex;
+	justify-content: center;
+}
+.flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.alignR {
+  text-align: right;
+}
+.alignL {
+  text-align: left;
+}
+.center {
+  text-align: center;
+}
+.f0 {
+  font-size: 0;
+}
+.fb {
+  font-weight: bold;
+}
+/**
+ * 文本省略
+ */
+.text-hidden {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.two-hidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+/**
+ * 箭头
+ */
+.right-arrow {
+  display: inline-block;
+  width: 14rpx;
+  height: 14rpx;
+  border-top: 1px solid;
+  border-right: 1px solid;
+  color: #999;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  margin-right: 4rpx;
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+  transition: transform .3s, -webkit-transform .3s;
+}
+.bottom-arrow {
+	-webkit-transform: rotate(135deg);
+	        transform: rotate(135deg);
+}
+.top-arrow {
+	-webkit-transform: rotate(315deg);
+	        transform: rotate(315deg);
+}
+/* 清楚按钮默认样式 */
+.clearButton {
+  padding: 0;
+  margin: 0;
+  line-height: inherit;
+  background-color: transparent;
+  color: transparent;
+	border-radius: 0;
+}
+.clearButton:after {
+  border: none;
+}
+.navigator-hover {
+  background-color: transparent;
+  opacity: 1;
+}
+.ios-textarea {
+	margin-left: -10rpx;
+}
+/* loading 占位 */
+.loading-placeholder {
+	width: 20rpx;
+	height: 20rpx;
+}
+.placeholder {
+  color: #cccccc !important;
+}
+.shadow {
+  box-shadow: 0px 2rpx 8rpx 0px rgba(0, 0, 0, 0.1);
+}
+.shadow-box {
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0px 2rpx 8rpx 0px rgba(0, 0, 0, 0.1);
+}
+.noselect {
+  -webkit-user-select: none;
+          user-select: none;
+}
+/**
+ * flex mixins
+ */
+.uni-popup-z96 .uni-popup {
+  z-index: 96;
+}
+

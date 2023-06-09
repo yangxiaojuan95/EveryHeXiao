@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "卡券详情",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "uqrcode": "/uni_modules/Sansnn-uQRCode/components/uqrcode/uqrcode",
+    "page-nav-bar": "/components/page-nav-bar/index",
+    "ay-qrcode": "/components/ay-qrcode/ay-qrcode"
+  }
+}

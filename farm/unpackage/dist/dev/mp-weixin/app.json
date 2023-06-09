@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/index",
+    "pages/login/personal-Information",
+    "pages/my-coupon/index",
+    "pages/shops/index",
+    "pages/coupon-rule/index",
+    "pages/coupon-detail/index",
+    "pages/coupon-shops/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "backgroundColor": "#F9F9F9",
+    "backgroundColorBottom": "#F9F9F9",
+    "navigationBarTextStyle": "white"
+  },
+  "permission": {
+    "scope.userFuzzyLocation": {
+      "desc": "获取附近店铺"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getFuzzyLocation"
+  ],
+  "usingComponents": {
+    "page-loading": "/frame/components/page-loading/index",
+    "safe-bottom": "/frame/components/safe-bottom/index",
+    "swiper-tab": "/frame/components/swiper-tab/index",
+    "nav-bar": "/frame/components/nav-bar/index",
+    "list-status": "/frame/components/list-status/index"
+  }
+}

@@ -1,0 +1,12 @@
+.form-parts {
+  flex-grow: 1;
+  width: 0;
+  
+  &::v-deep {
+    .el-form-item {
+      padding: 0 !important;
+      border-right: none !important;
+      border-bottom: none !important;
+    }
+  }
+}

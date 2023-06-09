@@ -1,0 +1,98 @@
+@charset "UTF-8";
+/* 主色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 文字尺寸 */
+/* Border Radius */
+.placeholder.data-v-1db347e8 {
+  color: #cccccc !important;
+}
+.shadow.data-v-1db347e8 {
+  box-shadow: 0px 2rpx 8rpx 0px rgba(0, 0, 0, 0.1);
+}
+.shadow-box.data-v-1db347e8 {
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0px 2rpx 8rpx 0px rgba(0, 0, 0, 0.1);
+}
+.noselect.data-v-1db347e8 {
+  -webkit-user-select: none;
+          user-select: none;
+}
+/**
+ * flex mixins
+ */
+.uni-popup-z96 .uni-popup.data-v-1db347e8 {
+  z-index: 96;
+}
+.data-v-1db347e8:export {
+  imageBg: #fafafa;
+  themeColor: #1747b2;
+}
+.box-qrcode.data-v-1db347e8 {
+  text-align: center;
+  position: relative;
+}
+.box-qrcode .box-img-qrcode.data-v-1db347e8 {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+image.data-v-1db347e8 {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.canvas-qrcode.data-v-1db347e8 {
+  margin: auto;
+  display: inline-block;
+}
+.opacity-qrcode.data-v-1db347e8 {
+  opacity: 0;
+  display: block;
+}
+.show-qrcode.data-v-1db347e8 {
+  display: block;
+  -webkit-animation: fade-data-v-1db347e8 0.7s;
+          animation: fade-data-v-1db347e8 0.7s;
+}
+.hide-qrcode.data-v-1db347e8 {
+  -webkit-animation: hide-data-v-1db347e8 0.7s;
+          animation: hide-data-v-1db347e8 0.7s;
+}
+@-webkit-keyframes fade-data-v-1db347e8 {
+from {
+    opacity: 0.8;
+}
+to {
+    opacity: 1;
+}
+}
+@keyframes fade-data-v-1db347e8 {
+from {
+    opacity: 0.8;
+}
+to {
+    opacity: 1;
+}
+}
+@-webkit-keyframes hide-data-v-1db347e8 {
+from {
+    opacity: 1;
+}
+to {
+    opacity: 0;
+}
+}
+@keyframes hide-data-v-1db347e8 {
+from {
+    opacity: 1;
+}
+to {
+    opacity: 0;
+}
+}
+

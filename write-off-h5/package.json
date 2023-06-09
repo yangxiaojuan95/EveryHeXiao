@@ -1,0 +1,19 @@
+{
+    "id": "QuShe-inputs",
+    "name": "QS-inputs组件 2019/10/18 7.8更新",
+    "version": "8.1",
+    "description": "自动化获取用户输入信息，类型、初始值、取值、布局、动画可由后端接口动态决定!",
+    "keywords": [
+        "自动化基础表单组件",
+        "picker",
+        "input",
+        "校验过滤",
+        "无限上传图片"
+    ],
+    "dependencies": {
+        "@zxing/library": "^0.19.1",
+        "blueimp-md5": "^2.19.0",
+        "html5-qrcode": "^2.3.1",
+        "jsqr": "^1.4.0"
+    }
+}

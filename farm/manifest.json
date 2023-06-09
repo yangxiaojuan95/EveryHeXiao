@@ -1,0 +1,168 @@
+{
+    "name" : "券种核销",
+    "appid" : "__UNI__34001CD",
+    "description" : "券种核销",
+    "versionName" : "1.0.0",
+    "versionCode" : 100,
+    "transformPx" : false,
+    "app-plus" : {
+        /* 5+App特有相关 */
+        "compatible" : {
+            "ignoreVersion" : true
+        },
+        /* 5+App特有相关 */
+        "modules" : {
+            "OAuth" : {},
+            "Payment" : {},
+            "Share" : {}
+        },
+        /* 模块配置 */
+        "distribute" : {
+            /* 应用发布信息 */
+            "android" : {
+                /* android打包配置 */
+                "permissions" : [
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.MEDIA_CONTENT_CONTROL\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.NFC\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+                ]
+            },
+            "ios" : {},
+            /* ios打包配置 */
+            "sdkConfigs" : {
+                "ad" : {},
+                "oauth" : {
+                    "weixin" : {
+                        "appid" : "wxabe8117a7ee33726",
+                        "UniversalLinks" : ""
+                    }
+                },
+                "payment" : {
+                    "weixin" : {
+                        "__platform__" : [ "android" ],
+                        "appid" : "wxabe8117a7ee33726",
+                        "UniversalLinks" : ""
+                    }
+                },
+                "maps" : {},
+                "share" : {
+                    "weixin" : {
+                        "appid" : "wxabe8117a7ee33726",
+                        "UniversalLinks" : ""
+                    }
+                }
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "",
+                    "xhdpi" : "",
+                    "xxhdpi" : "",
+                    "xxxhdpi" : ""
+                },
+                "ios" : {
+                    "appstore" : "",
+                    "ipad" : {
+                        "app" : "",
+                        "app@2x" : "",
+                        "notification" : "",
+                        "notification@2x" : "",
+                        "proapp@2x" : "",
+                        "settings" : "",
+                        "settings@2x" : "",
+                        "spotlight" : "",
+                        "spotlight@2x" : ""
+                    },
+                    "iphone" : {
+                        "app@2x" : "",
+                        "app@3x" : "",
+                        "notification@2x" : "",
+                        "notification@3x" : "",
+                        "settings@2x" : "",
+                        "settings@3x" : "",
+                        "spotlight@2x" : "",
+                        "spotlight@3x" : ""
+                    }
+                }
+            }
+        },
+        /* SDK配置 */
+        "usingComponents" : true
+    },
+    "quickapp" : {},
+    /* 快应用特有相关 */
+    "mp-weixin" : {
+        /* 小程序特有相关 */
+        "usingComponents" : true,
+        "appid" : "wx6c699370e42282d1",
+        "setting" : {
+            "urlCheck" : false
+        },
+        "permission" : {
+            "scope.userFuzzyLocation" : {
+                "desc" : "获取附近店铺"
+            }
+        },
+        "requiredPrivateInfos" : [ "getFuzzyLocation" ]
+    },
+    "mp-alipay" : {
+        "usingComponents" : true
+    },
+    "mp-baidu" : {
+        "usingComponents" : true
+    },
+    "mp-toutiao" : {
+        "usingComponents" : true
+    },
+    "mp-qq" : {
+        "usingComponents" : true
+    },
+    "h5" : {
+        "devServer" : {
+            "port" : "", //端口号
+            "disableHostCheck" : true,
+            //代理配置  /api proxy 当遇到 /api 开头的请求时，将请求转发到 http://localhost:8080
+            "proxy" : {
+                "/api" : {
+                    //代理目标地址 把路径转发到target目标上面
+                    "target" : "https://farm.juzhentech.com",
+                    "changeOrigin" : true, //是否跨域
+                    "secure" : false, // 设置支持https协议的代理
+                    "pathRewrite" : {
+                        "^/api" : "/api"
+                    }
+                }
+            },
+            "https" : false
+        },
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
+        },
+        "router" : {
+            "mode" : "hash"
+        },
+        "title" : "金田农场",
+        "template" : "index.html"
+    }
+}

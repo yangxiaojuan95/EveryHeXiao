@@ -1,0 +1,130 @@
+/* 主色 */
+$themeR: 23;
+$themeG: 71;
+$themeB: 178;
+
+$theme-color: rgb($themeR, $themeG, $themeB);
+$theme-color-bg: rgba($themeR, $themeG, $themeB, 0.05);
+$sub-color: #FEC403;
+
+$text-color: #333;
+$color-grey: #999;
+$color-placeholder: #cccccc;
+/* 背景颜色 */
+$bg-color-grey: #f7f7f7;
+$bg-color-image: #fafafa;
+$bg-color-mask: rgba(0, 0, 0, 0.4); //遮罩颜色
+$bg-disabled: #c8c8c8;
+/* 边框颜色 */
+$border-color: #efefef;
+/* 文字尺寸 */
+$font-size-xsm: 20upx;
+$font-size-sm: 24upx;
+$font-size-base: 26upx;
+$font-size-lg: 28upx;
+$font-size-xlg: 30upx;
+/* Border Radius */
+$border-radius-sm: 4upx;
+$border-radius-base: 8upx;
+$border-radius-lg: 12upx;
+$border-radius-xlg: 16upx;
+$border-radius-circle: 50%;
+
+.placeholder {
+  color: $color-placeholder !important;
+}
+.shadow {
+  box-shadow: 0px 2upx 8upx 0px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-box {
+  background-color: #fff;
+  border-radius: $border-radius-lg;
+  box-shadow: 0px 2upx 8upx 0px rgba(0, 0, 0, 0.1);
+}
+
+.noselect {
+  user-select: none;
+}
+
+/**
+ * flex mixins
+ */
+
+@mixin flex {
+  display: flex;
+}
+@mixin flex-direction {
+  @include flex;
+  flex-direction: column;
+}
+@mixin fg1 {
+  flex: 1;
+}
+@mixin j-flex-end {
+  justify-content: flex-end;
+}
+@mixin c-flex-end {
+  align-items: flex-end;
+}
+@mixin j-self-end {
+  justify-self: flex-end;
+}
+@mixin c-self-end {
+  align-self: flex-end;
+}
+@mixin fs0 {
+  flex-shrink: 0;
+}
+@mixin c-center {
+  align-items: center;
+}
+@mixin j-center {
+  justify-content: center;
+}
+@mixin flex-between {
+  @include flex;
+  justify-content: space-between;
+}
+@mixin flex-c-center {
+  @include flex;
+  @include c-center;
+}
+@mixin flex-j-center {
+  @include flex;
+  @include j-center;
+}
+@mixin flex-center {
+  @include flex;
+  @include c-center;
+  @include j-center;
+}
+
+@mixin text-hidden {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@mixin two-hidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+@mixin no-select {
+  user-select: none;
+}
+
+.uni-popup-z96 {
+	.uni-popup {
+		z-index: 96;
+	}
+}
+
+:export {
+  imageBg: $bg-color-image;
+  themeColor: $theme-color;
+}

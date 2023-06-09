@@ -1,0 +1,1 @@
+<view class="coupon-list data-v-488a947d"><block wx:for="{{list}}" wx:for-item="item" wx:for-index="index" wx:key="CouponId"><coupon-item class="coupon-item-comp data-v-488a947d" vue-id="{{'6e6f07ae-1-'+index}}" item="{{item}}" showImage="{{showImage}}" data-event-opts="{{[['^get',[['handleGet',[index]]]]]}}" bind:get="__e" bind:__l="__l"></coupon-item></block></view>

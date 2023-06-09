@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "领券中心",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "page-nav-bar": "/components/page-nav-bar/index",
+    "user-data-header": "/components/user-data-header/index",
+    "coupon-list": "/components/coupon-list/index"
+  }
+}

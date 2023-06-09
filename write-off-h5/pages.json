@@ -1,0 +1,39 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页,
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "核销",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				// "navigationStyle": "custom",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "核销记录"
+			}
+		},
+		{
+			"path": "pages/mumu-one-code/index",
+			"style": {
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationStyle": "custom",
+				"navigationBarTitleText": "扫码登录"
+			}
+		}
+	],
+	"globalStyle": {
+		"backgroundColor": "#F9F9F9",
+		"backgroundColorBottom": "#F9F9F9",
+		// "navigationBarBackgroundColor":"#1747B2",
+		"navigationBarTextStyle": "white"
+	},
+	"condition": { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": []
+	}
+}

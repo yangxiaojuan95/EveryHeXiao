@@ -1,0 +1,147 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3532746 */
+  src: url('iconfont.woff2?t=1658823063391') format('woff2'),
+       url('iconfont.woff?t=1658823063391') format('woff'),
+       url('iconfont.ttf?t=1658823063391') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon_salesman:before {
+  content: "\e6fe";
+}
+
+.icon_transit-company:before {
+  content: "\e6ff";
+}
+
+.icon_consignee:before {
+  content: "\e700";
+}
+
+.icon_consignor:before {
+  content: "\e701";
+}
+
+.icon_code:before {
+  content: "\e6ea";
+}
+
+.icon_freeze:before {
+  content: "\e6fd";
+}
+
+.icon_scan:before {
+  content: "\e6fc";
+}
+
+.icon_base-in:before {
+  content: "\e6e0";
+}
+
+.icon_add:before {
+  content: "\e6e1";
+}
+
+.icon_down:before {
+  content: "\e6e2";
+}
+
+.icon_break-up:before {
+  content: "\e6e4";
+}
+
+.icon_delivery:before {
+  content: "\e6e5";
+}
+
+.icon_del:before {
+  content: "\e6e6";
+}
+
+.icon_export:before {
+  content: "\e6e7";
+}
+
+.icon_more:before {
+  content: "\e6e8";
+}
+
+.icon_financial-in:before {
+  content: "\e6e9";
+}
+
+.icon_matching:before {
+  content: "\e6eb";
+}
+
+.icon_import:before {
+  content: "\e6ec";
+}
+
+.icon_no-pass:before {
+  content: "\e6ed";
+}
+
+.icon_logistics-in:before {
+  content: "\e6ee";
+}
+
+.icon_pass:before {
+  content: "\e6ef";
+}
+
+.icon_outbound:before {
+  content: "\e6f0";
+}
+
+.icon_search:before {
+  content: "\e6f1";
+}
+
+.icon_order-in:before {
+  content: "\e6f2";
+}
+
+.icon_print:before {
+  content: "\e6f3";
+}
+
+.icon_up:before {
+  content: "\e6f4";
+}
+
+.icon_undo:before {
+  content: "\e6f5";
+}
+
+.a-icon_edit3x:before {
+  content: "\e6f6";
+}
+
+.icon_password:before {
+  content: "\e6f7";
+}
+
+.icon_urgent:before {
+  content: "\e6f8";
+}
+
+.icon_start:before {
+  content: "\e6f9";
+}
+
+.icon_warehouse-in:before {
+  content: "\e6fa";
+}
+
+.icon_rolls-in:before {
+  content: "\e6fb";
+}
+

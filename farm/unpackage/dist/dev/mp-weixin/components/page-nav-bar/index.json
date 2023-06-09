@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "nav-bar": "/frame/components/nav-bar/index"
+  },
+  "component": true
+}

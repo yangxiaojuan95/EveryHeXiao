@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "我的卡券",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "page-nav-bar": "/components/page-nav-bar/index",
+    "shop-list": "/components/shop-list/index",
+    "search-header": "/components/search-header/index"
+  }
+}

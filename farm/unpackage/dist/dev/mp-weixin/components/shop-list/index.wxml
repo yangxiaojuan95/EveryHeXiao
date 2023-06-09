@@ -1,0 +1,1 @@
+<view class="shop-list data-v-0d3fe2ed"><block wx:for="{{list}}" wx:for-item="item" wx:for-index="index"><shop-item class="shop-item-comp data-v-0d3fe2ed" vue-id="{{'ca86088e-1-'+index}}" item="{{item}}" bind:__l="__l"></shop-item></block></view>

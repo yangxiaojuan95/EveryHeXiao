@@ -1,0 +1,38 @@
+/**
+* 通用业务
+*/
+
+html, body, #app {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin: 0;
+}
+
+// nprogress
+#nprogress .bar {
+  background: #fff !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: var(--theme);
+  border-left-color: var(--theme);
+}
+
+// 可点击
+.clickable {
+  text-decoration: underline;
+  color: #2c43c9;
+  cursor: pointer;
+}

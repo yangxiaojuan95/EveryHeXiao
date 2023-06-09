@@ -1,0 +1,86 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "领券中心",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "授权登录",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationBarTextStyle": "black",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/login/personal-Information",
+			"style": {
+				"navigationBarTitleText": "完善注册信息",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/my-coupon/index",
+			"style": {
+				"navigationBarTitleText": "我的卡券",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/shops/index",
+			"style": {
+				"navigationBarTitleText": "我的卡券",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/coupon-rule/index",
+			"style": {
+				"navigationBarTitleText": "使用规则",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/coupon-detail/index",
+			"style": {
+				"navigationBarTitleText": "卡券详情",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/coupon-shops/index",
+			"style": {
+				"navigationBarTitleText": "可用门店",
+				"navigationBarBackgroundColor": "#FFFFFF",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		}
+	],
+	"globalStyle": {
+		"backgroundColor": "#F9F9F9",
+		"backgroundColorBottom": "#F9F9F9",
+		// "navigationBarBackgroundColor":"#1747B2",
+		"navigationBarTextStyle": "white"
+	},
+	"condition": { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": []
+	}
+}

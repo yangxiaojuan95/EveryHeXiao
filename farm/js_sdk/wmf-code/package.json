@@ -1,0 +1,10 @@
+{
+    "id": "wmf-code",
+    "name": "二维码 条形码",
+    "version": "1.1.0",
+    "description": "二维码 条形码生成",
+    "keywords": [
+        "二维码",
+        "条形码"
+    ]
+}

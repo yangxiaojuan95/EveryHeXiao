@@ -1,0 +1,32 @@
+{
+  "loginPageProjectName": "核销数字化管理系统",
+  "loginPageSlogan1": "",
+  "loginPageSlogan2": "",
+  "loginPageSloganAnimation": true,
+  "loginPageRigthsStartYear": 2023,
+  "loginPageRigthsReserveCompany": "",
+  "loginPageLogo": "",
+  "loginPageLogoWidth": "199px",
+  "loginPageLogoHeight": "64px",
+  "loginPageBg": "/imgs/chuangheng/bg@3x.png",
+
+  "navBarProjectName": "核销数字化管理系统",
+  "navBarLogo": "",
+  "navBarLogoWidth": "120px",
+  "navBarLogoHeight": "46px",
+
+  "cssVars": {
+    "--theme": "rgb(24, 71, 178)",
+    "--subTheme": "rgb(254, 196, 3)",
+    "--themeLight": "rgba(221, 237, 253, .5)",
+    "--sideThemeActive": "#517cff",
+
+    "--el-color-primary-dark-2": "rgb(32, 84, 253)",
+    "--el-color-primary-light-3": "rgb(84, 124, 253)",
+    
+    "--loginPageSlogan1Step": 4,
+    "--loginPageSlogan2Step": 14,
+    "--loginPageSlogan1Width": "4em",
+    "--loginPageSlogan2Width": "14em"
+  }
+}

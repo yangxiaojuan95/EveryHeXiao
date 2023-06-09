@@ -1,0 +1,39 @@
+
+:root {
+  --themeRgb: 51, 100, 255;
+  --subThemeRgb: 0, 214, 186;
+  --hoverBgRgb: 250, 250, 250;
+
+  --theme: rgb(var(--themeRgb));
+  --subTheme: rgb(var(--subThemeRgb));
+  --themeLight: rgba(221, 237, 253, .5);
+  
+  --hoverBg: rgb(var(--hoverBgRgb));
+  --danger: rgb(233, 86, 85);
+  --warning: rgb(255, 139, 26);
+  --success: rgb(67, 180, 126);
+  --text: #333;
+  --grey: #f0f2f5;
+
+  --pageBg: var(--grey);
+  --loginBgColor: var(--grey);
+  --border: var(--grey);
+
+  --el-color-primary-dark-2: rgb(32, 84, 253);
+  --el-color-primary-light-3: rgb(84, 124, 253);
+
+  --el-color-primary: var(--theme);
+  --el-color-danger: var(--danger);
+  --el-color-warning: var(--warning);
+  --el-color-success: var(--success);
+  --el-fill-color-lighter: var(--hoverBg);
+
+  --el-border-radius-base: 2px;
+.el-scrollbar__bar.is-vertical {
+  width: 20px!important;
+  display: block!important;
+}
+.el-scrollbar__bar.is-horizontal{
+  height: 20px!important;
+}
+}

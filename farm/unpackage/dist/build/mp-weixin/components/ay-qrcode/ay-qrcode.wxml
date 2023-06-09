@@ -1,0 +1,1 @@
+<view class="{{['data-v-cc4b79d2',modal?'show-qrcode':'hide-qrcode']}}"><view data-event-opts="{{[['longtap',[['longtapCode',['$event']]]]]}}" class="box-qrcode data-v-cc4b79d2" style="{{'margin-left:'+(marginLeft+'px')+';'}}" bindlongtap="__e"><canvas class="canvas-qrcode data-v-cc4b79d2" style="{{(style_w_h)}}" canvas-id="{{qrcode_id}}"></canvas></view></view>
