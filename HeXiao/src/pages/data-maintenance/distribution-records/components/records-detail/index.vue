@@ -1,36 +1,39 @@
 <script lang="tsx">
 export default {
     name: "RecordsDetail",
+    components: { PageModelForm }
 }
 </script>
 
 <script setup lang="tsx">
-import { FormDialog , defineConfig} from '@juzhenfe/page-model'
+import { FormDialog , PageModelForm, defineConfig, defineForm} from '@juzhenfe/page-model'
 import { ref , nextTick} from 'vue'
 import * as echarts from 'echarts'
 import { processdRequest } from '@/utils/request'
 import { table } from 'console'
 import { pathUrl } from '@/config'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
 let visable = ref(false)
 let tableList = ref()
 let recordsID = ref()
 const show =async (id: any) => {
-  const result = await processdRequest.post(
-    `/api/BackRecords/RecordsDetail?RecordsID=${id}`,
-    // {
-    //     RecordsID: id
-    // }
-  )
-  tableList.value = result
   recordsID.value = id
   visable.value = true
+  getData()
+} 
+
+const getData =async () => {
+  const result = await processdRequest.post(
+    `/api/BackRecords/RecordsDetail?RecordsID=${recordsID.value}`)
+  tableList.value = result
   nextTick(() => {
     handlePerformanceChart()
     handleListModel()
     pageModelRef.value.updateTableData(result.DetailList)
   })
-} 
+}
+
 /**
  * 部门费用占比
  */
@@ -164,7 +167,26 @@ let currentSelections: any[] = []
 const config = defineConfig<any>({
   reflect: true,
   isAutoAddButton: false,
+  // getUrl: `/api/BackRecords/RecordsDetail?RecordsID=${recordsID.value}`,
+  addUrl: '/api/BackRecords/RecordsReissue',
+  getReqResultProcessFn(result) {
+    tableList.value = result
+    return {
+      list: result.DetailList,
+      total: result.total
+    }
+  },
   table: {
+    selectable: true,
+    selectableButtons: [
+      {
+        text: '补发',
+        event: 'record',
+        props :{
+          type: 'primary'
+        }
+      }
+    ],
     props: {
       stripe: true,
       border: true,
@@ -182,8 +204,23 @@ const config = defineConfig<any>({
     // ],
     // 表格操作栏
     operate: {
-      width: '85px',
+      props: {
+        fixed: 'right'
+      },
+      width: '80px',
       els: [
+        // {
+          // text: '补发',
+          // event: 'record',
+          // props: {
+          //   link: true,
+          //   type: "primary",
+          // }
+        // },
+        {
+          text: '删除',
+          event: 'delete'
+        }
       ]
     },
     events: {
@@ -213,7 +250,138 @@ const config = defineConfig<any>({
       }
     ]
   },
+  form: {
+    mode: 'dialog',
+    props: {
+      labelWidth: '60px'
+    },
+    dialogProps: {
+      width: '300px'
+    },
+    beforeSubmit(formData) {
+      formData.RecordsID = recordsID.value
+      return formData
+    },
+    els: [
+      {
+        label: '姓名',
+        prop: 'Name',
+        eType: 'el-input',
+        props: {
+          placeholder: '请输入姓名',
+          clearable: true
+        }
+      },
+      {
+        label: '手机号',
+        prop: 'Phone',
+        eType: 'el-input',
+        props: {
+          placeholder: '请输入手机号',
+          clearable: true
+        }
+      },
+      {
+        label: '部门',
+        prop: 'Department',
+        eType: 'el-select',
+        props: {
+          placeholder: '请选择部门',
+          clearable: true
+        },
+        optionsData: {
+          list: [{
+            label: '男装',
+            value: '男装',
+          },{
+            label: '女装',
+            value: '女装',
+          },{
+            label: '童装',
+            value: '童装',
+          },{
+            label: '乐町',
+            value: '乐町',
+          }],
+          label: 'label',
+          value: 'value'
+        },
+        style: {
+          width : '100%'
+        }
+      }
+    ]
+  }
 })
+
+const form = defineForm<any>({
+  mode: 'dialog',
+  props: {
+    labelWidth: '60px'
+  },
+  dialogProps: {
+    width: '300px'
+  },
+  beforeSubmit(formData) {
+    formData.RecordsID = recordsID.value
+    return formData
+  },
+  els: [
+    {
+      label: '姓名',
+      prop: 'Name',
+      eType: 'el-input',
+      props: {
+        placeholder: '请输入姓名',
+        clearable: true
+      }
+    },
+    {
+      label: '手机号',
+      prop: 'Phone',
+      eType: 'el-input',
+      props: {
+        placeholder: '请输入手机号',
+        clearable: true
+      }
+    },
+    {
+      label: '部门',
+      prop: 'Department',
+      eType: 'el-select',
+      props: {
+        placeholder: '请选择部门',
+        clearable: true
+      },
+      optionsData: {
+        list: [{
+          label: '男装',
+          value: '男装',
+        },{
+          label: '女装',
+          value: '女装',
+        },{
+          label: '童装',
+          value: '童装',
+        },{
+          label: '乐町',
+          value: '乐町',
+        }],
+        label: 'label',
+        value: 'value'
+      },
+      style: {
+        width : '100%'
+      }
+    }
+  ]
+})
+
+const refreshTableData = (clear: boolean = false) => {
+  pageModelRef.value.refreshTableData()
+  clear && pageModelRef.value.clearSelection()
+}
+
 const handleExport =async () => {
   const result = await processdRequest.post(
     `/api/BackRecords/RecordsByOutput?RecordsID=${recordsID.value}`,
@@ -223,6 +391,41 @@ const handleExport =async () => {
 const hide = () => {
 
 }
+
+let isShow = ref(false)
+let pageModelFormRef = ref()
+const handleRecord =async () => {
+  isShow.value = true
+  // await pageModelRef.value.handleAddEvent()
+}
+const handleIsShow = () => {
+  pageModelFormRef.value.setFormData({})
+  isShow.value = false
+}
+const submit =async () => {
+  const formData = await pageModelFormRef.value.getFormData()
+  await processdRequest.post(
+    '/api/BackRecords/RecordsReissue',
+    formData
+  )
+  ElMessage.success('补发成功！')
+  handleIsShow()
+  getData()
+}
+const handleDelete = async (row: any) => {
+  await ElMessageBox.confirm('是否确认删除？','确认',{
+    type: 'error'
+  })
+  await processdRequest.get(
+    '/api/BackRecords/RecordsIncorrectDistribution',
+    {
+      DetailID: row.DetailID
+    }
+  )
+  ElMessage.success('删除成功！')
+  getData()
+}
+
 defineExpose({
     show
 })
@@ -239,7 +442,15 @@ defineExpose({
         <div>领取详情</div>
         <div><el-button type="primary" @click="handleExport">导出</el-button></div>
       </div>
-      <page-model ref="pageModelRef" :config="config" @export="handleExport"></page-model>
+      <page-model ref="pageModelRef" :config="config" @export="handleExport" @record="handleRecord" @delete="handleDelete"></page-model>
+      <el-dialog v-model="isShow" width="30%" >
+        <PageModelForm :form="form" ref="pageModelFormRef"></PageModelForm>
+        <template #footer>
+          <el-button @click="handleIsShow">取消</el-button>
+          <el-button type="primary" @click="submit">确认</el-button>
+        </template>
+      </el-dialog>
+      
     </div>
     
   </el-dialog>
