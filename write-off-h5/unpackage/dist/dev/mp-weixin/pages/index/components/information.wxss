@@ -1,0 +1,51 @@
+@charset "UTF-8";
+/* 主色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 文字尺寸 */
+/* Border Radius */
+.placeholder.data-v-e92106ee {
+  color: #cccccc !important;
+}
+.shadow.data-v-e92106ee {
+  box-shadow: 0px 2rpx 8rpx 0px rgba(0, 0, 0, 0.1);
+}
+.shadow-box.data-v-e92106ee {
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0px 2rpx 8rpx 0px rgba(0, 0, 0, 0.1);
+}
+.noselect.data-v-e92106ee {
+  -webkit-user-select: none;
+          user-select: none;
+}
+/**
+ * flex mixins
+ */
+.uni-popup-z96 .uni-popup.data-v-e92106ee {
+  z-index: 96;
+}
+.data-v-e92106ee:export {
+  imageBg: #fafafa;
+  themeColor: #1747b2;
+}
+.box.data-v-e92106ee {
+  padding: 20rpx;
+  font-size: 26rpx;
+}
+.box .left.data-v-e92106ee {
+  text-align: left;
+}
+.box .button.data-v-e92106ee {
+  width: 100%;
+  text-align: center;
+  width: 200rpx;
+  padding: 10rpx 20rpx;
+  box-shadow: 0rpx 4rpx 16rpx 0rpx #e1e1e1;
+  background: #2258bd;
+}
+image.data-v-e92106ee {
+  width: 500rpx;
+  height: 250rpx;
+}
+

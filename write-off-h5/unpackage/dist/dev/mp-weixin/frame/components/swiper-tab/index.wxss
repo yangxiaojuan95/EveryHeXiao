@@ -1,0 +1,56 @@
+@charset "UTF-8";
+/* 主色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 文字尺寸 */
+/* Border Radius */
+.placeholder {
+  color: #cccccc !important;
+}
+.shadow {
+  box-shadow: 0px 2rpx 8rpx 0px rgba(0, 0, 0, 0.1);
+}
+.shadow-box {
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0px 2rpx 8rpx 0px rgba(0, 0, 0, 0.1);
+}
+.noselect {
+  -webkit-user-select: none;
+          user-select: none;
+}
+/**
+ * flex mixins
+ */
+.uni-popup-z96 .uni-popup {
+  z-index: 96;
+}
+.tabs {
+  height: 90rpx;
+  line-height: 90rpx;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  font-size: 32rpx;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.tabs .tabs-item {
+  height: 100%;
+}
+.tabs .tabs-item.active {
+  font-weight: 500;
+}
+.tabs .tabs-item.active text {
+  opacity: 1;
+}
+.active-bar {
+  position: absolute;
+  bottom: 0;
+  height: 6rpx;
+  left: 0;
+  right: 10rpx;
+  transition: left .15s, right .15s;
+}
+

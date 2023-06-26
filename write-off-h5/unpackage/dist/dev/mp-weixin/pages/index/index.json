@@ -1,0 +1,11 @@
+{
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "核销记录",
+  "usingComponents": {
+    "uni-popup": "/uni_modules/uni-popup/components/uni-popup/uni-popup",
+    "search-header": "/components/search-header/index",
+    "write-order": "/pages/index/components/write-order",
+    "information": "/pages/index/components/information"
+  }
+}

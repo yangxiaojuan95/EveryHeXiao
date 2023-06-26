@@ -1,0 +1,43 @@
+@charset "UTF-8";
+/* 主色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 文字尺寸 */
+/* Border Radius */
+.placeholder.data-v-7f92dd3d {
+  color: #cccccc !important;
+}
+.shadow.data-v-7f92dd3d {
+  box-shadow: 0px 2rpx 8rpx 0px rgba(0, 0, 0, 0.1);
+}
+.shadow-box.data-v-7f92dd3d {
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0px 2rpx 8rpx 0px rgba(0, 0, 0, 0.1);
+}
+.noselect.data-v-7f92dd3d {
+  -webkit-user-select: none;
+          user-select: none;
+}
+/**
+ * flex mixins
+ */
+.uni-popup-z96 .uni-popup.data-v-7f92dd3d {
+  z-index: 96;
+}
+.data-v-7f92dd3d:export {
+  imageBg: #fafafa;
+  themeColor: #1747b2;
+}
+.box.data-v-7f92dd3d {
+  display: flex;
+  justify-content: space-between;
+  margin: 30rpx;
+  box-shadow: 0rpx 4rpx 16rpx 0rpx #efefef;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  line-height: 50rpx;
+  position: relative;
+  font-size: 28rpx;
+}
+

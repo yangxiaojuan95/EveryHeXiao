@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['hide',['$event']]]]]}}" bindtap="__e"><mumu-get-qrcode vue-id="5626d58a-1" exact="environment" definition="true" data-event-opts="{{[['^success',[['qrcodeSucess']]],['^error',[['qrcodeError']]]]}}" bind:success="__e" bind:error="__e" bind:__l="__l"></mumu-get-qrcode></view>

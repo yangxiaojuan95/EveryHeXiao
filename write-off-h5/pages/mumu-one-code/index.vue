@@ -28,7 +28,7 @@
 				// 	title: '成功',
 				// 	content: data,
 				// 	success: () => {
-				if (this.type === 1) {
+				if (this.type == 1) {
 					let bgKey = JSON.stringify(data);
 					uni.setStorageSync("bgKey", bgKey);
 					uni.navigateTo({
@@ -36,11 +36,11 @@
 						url: `/pages/login/index`
 					})
 				}
-				if (this.type === 2) {
+				if (this.type == 2) {
 					// let hexiao = JSON.stringify(data);
 					// uni.setStorageSync("hexiao", hexiao);
 					uni.navigateTo({
-						url: `/pages/index/index>data=data`
+						url: `/pages/index/index?data=${data}`
 					})
 				}
 

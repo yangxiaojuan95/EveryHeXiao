@@ -5,22 +5,20 @@
 				<view class="">
 					<image src="@/static/img/back.png" mode="aspectFit"></image>
 				</view>
-				<view class="">核销记录</view>
+				<view class="title">核销记录</view>
 				<view class="">{{ShopName}}</view>
 			</view>
 			<view class="time">
 				<picker mode="date" class="querys" v-model="StartTime" @change="handleStartTime">
 					<view class="clear-btn">
-						<input type="serch" :value="StartTime" placeholder="起始时间" placeholder-class="placeholder"
-							disabled>
+						<input type="serch" :value="StartTime" placeholder="起始时间" placeholder-class="placeholder" disabled>
 						<!-- <icon class="search-clear-buttons" v-if="StartTime"
 							@click.stop="close(clera = 'CreationTime')" type="clear" :size="14"></icon> -->
 					</view>
 				</picker>
 				<picker mode="date" class="querys" v-model="EndTime" @change="handleEndTime">
 					<view class="clear-btn">
-						<input type="serch" :value="EndTime" placeholder="结束时间" placeholder-class="placeholder"
-							disabled>
+						<input type="serch" :value="EndTime" placeholder="结束时间" placeholder-class="placeholder" disabled>
 						<!-- <icon class="search-clear-buttons" v-if="EndTime" @click.stop="close(clera = 'LeaveTime')"
 							type="clear" :size="14"></icon> -->
 					</view>
@@ -29,17 +27,17 @@
 			</view>
 			<!-- tab栏 -->
 			<view class="top-box">
-				<swiper-tab :tabs="tabs" :current="currentTab" :activeColor="themeColor" :barColor="themeColor"
-					:fontSize="28" @change="onTabCgnage">
+				<swiper-tab :tabs="tabs" :current="currentTab" :activeColor="themeColor" :barColor="themeColor" :fontSize="28"
+					@change="onTabCgnage">
 				</swiper-tab>
 			</view>
 		</view>
 
-		<view class="order-orders">
-			<write-order v-for="item,i in order" :key="item.DispatchOrderID" @click.native="handleItem(item.couponID)"
+		<scroll-view class="order-orders" scroll-y @scrolltolower="handleLower">
+			<write-order v-for="item,i in orderList" :key="item.DispatchOrderID" @click.native="handleItem(item.couponID)"
 				:id="couponID" :order="item" class="pull-order-item-out"></write-order>
-			<list-status :status="table.status" />
-		</view>
+		</scroll-view>
+		<!-- <list-status :status="table.status" /> -->
 		<view class="pagination">
 			<view class="hexiao" @click="information">核销</view>
 			<!-- <view class="banben">(V-1.0.1)</view> -->
@@ -47,7 +45,6 @@
 
 		<uni-popup ref="popup" type="center">
 			<Information class="popup" :order="order"></Information>
-
 		</uni-popup>
 	</view>
 </template>
@@ -71,17 +68,6 @@
 		token
 	} from '@/apis/api/index.ts';
 	import PageList from '@/frame/utils/create-list.ts';
-	const list = new PageList({ //最开始获取数据渲染页面
-		api: GetApprovalRecordsAjax,
-		data: {
-			CouponType: -1,
-			token: true //每次获取判断一下token
-		},
-		filedMaps: {
-			list: 'Result',
-			total: 'Page'
-		}
-	})
 	export default {
 		name: 'Index',
 		components: {
@@ -89,52 +75,11 @@
 			WriteOrder,
 			Information
 		},
-		mixins: [list],
 		data() {
 			return {
-				order: [{
-					couponID: 'klasjodf124123',
-					Price: '9.9',
-					CouponTypeStr: '折扣券',
-					ApprovalTime: '2023-5-30'
-				}, {
-					couponID: 'klasj123odf124123',
-					Price: '8.5',
-					CouponTypeStr: '折扣券',
-					ApprovalTime: '2023-5-30'
-				}, {
-					couponID: 'klasjodf1231124123',
-					Price: '5',
-					CouponTypeStr: '折扣券',
-					ApprovalTime: '2023-5-30'
-				}, {
-					couponID: 'klasjoddsadsf124123',
-					Price: '3.2',
-					CouponTypeStr: '折扣券',
-					ApprovalTime: '2023-5-30'
-				}, {
-					couponID: 'klasjoddssdadsf124123',
-					Price: '4.5',
-					CouponTypeStr: '折扣券',
-					ApprovalTime: '2023-5-30'
-				}, {
-					couponID: 'klasjoddsgsadsf124123',
-					Price: '4',
-					CouponTypeStr: '折扣券',
-					ApprovalTime: '2023-5-30'
-				}, {
-					couponID: 'klasjoweddsadsf124123',
-					Price: '3.9',
-					CouponTypeStr: '折扣券',
-					ApprovalTime: '2023-5-30'
-				}, {
-					couponID: 'klasjodbasdsadsf124123',
-					Price: '3.8',
-					CouponTypeStr: '折扣券',
-					ApprovalTime: '2023-5-30'
-				}],
+				order: [],
 				couponID: null,
-				hexiaoId: null,
+				hexiaoId: undefined,
 				tabs: [{
 						text: '全部',
 						value: EntruckOrderStatusEnum.全部,
@@ -163,19 +108,21 @@
 				CouponType: 0,
 				StartTime: null,
 				EndTime: null,
-				ShopName: null
+				ShopName: null,
+				list: {},
+				orderList: [],
+				show: false
 			}
 		},
 		async onLoad(e) {
 			// 获取列表数据
-			this.getPageList()
-			setTimeout(() => {
-				this.addOrderStatus()
-			}, 200)
-			// this.hexiaoId = e.data
-			console.log(111)
-			this.hexiaoId = 'ed13cc94-23ef-ed11-97f0-f5437e275830'
-			if (this.hexiaoId !== null) {
+			this.addOrderStatus()
+			// let hexiao = uni.getStorageSync("hexiao");
+			// let hexiaos = JSON.parse(hexiao);
+			// this.hexiaoId = hexiaos
+			this.hexiaoId = e?.data || ''
+			// this.hexiaoId = 'ed13cc94-23ef-ed11-97f0-f5437e275830'
+			if (this.hexiaoId !== '') {
 				const result = await GetScanCouponGetDetailAjax({
 					couponID: this.hexiaoId,
 					token: true
@@ -187,10 +134,6 @@
 		},
 		onShow() {
 			this.ShopName = uni.getStorageSync("ShopName");
-			// this.hexiaoId = JSON.parse(uni.getStorageSync("bgKey"));
-			// if (this.hexiaoId !== null) {
-
-			// }
 		},
 		methods: {
 			async handleStartTime(e) {
@@ -200,13 +143,9 @@
 			async handleEndTime(e) {
 				this.EndTime = e.detail.value
 			},
+			/** 筛选 */
 			async handleData() {
-				this.addParams({
-					CouponType: this.CouponType - 1,
-					StartTime: this.StartTime,
-					EndTime: this.EndTime
-				})
-				this.resetList()
+				this.addOrderStatus()
 			},
 			handleItem(id) {
 				this.couponID = id
@@ -216,16 +155,10 @@
 				uni.navigateTo({
 					url: '/pages/mumu-one-code/index?type=2'
 				})
-				// const result = await GetScanCouponGetDetailAjax({
-				// 	couponID: this.couponID,
-				// 	token: true
-				// })
-				// console.log(result, 'result')
-				// uni.navigateTo({
-				// 	url: '/pages/information/index?dispatchOrderID=' + id
-				// })
 			},
 			async addOrderStatus() {
+				this.PageIndex = 1
+				this.show = false
 				const loginResult = await GetApprovalRecordsAjax({
 					CouponType: this.CouponType - 1,
 					StartTime: this.StartTime,
@@ -235,24 +168,42 @@
 					token: true
 				})
 				this.list = loginResult.Result
+				this.orderList = loginResult.Result.data
 				this.tabs[0].text = `全部(${this.list.total})`
 				this.tabs[1].text = `抵扣券(${this.list.DkCount})`
 				this.tabs[2].text = `折扣券(${this.list.ZkCount})`
 				this.tabs[3].text = `满减券(${this.list.YhCount})`
-
-				// this.addParams({
-				// 	// logisticsStatus: this.tabs[this.currentTab].value
-				// })
+			},
+			async handleLower() {
+				if (this.show) {
+					return false
+				}
+				this.PageIndex = this.PageIndex + 1
+				const result = await GetApprovalRecordsAjax({
+					CouponType: this.CouponType - 1,
+					StartTime: this.StartTime,
+					EndTime: this.EndTime,
+					PageIndex: this.PageIndex,
+					PageSize: this.PageSize,
+					token: true
+				})
+				this.list = result.Result
+				this.tabs[0].text = `全部(${this.list.total})`
+				this.tabs[1].text = `抵扣券(${this.list.DkCount})`
+				this.tabs[2].text = `折扣券(${this.list.ZkCount})`
+				this.tabs[3].text = `满减券(${this.list.YhCount})`
+				if (result.Result.data.length > 0) {
+					this.orderList.push(...result.Result.data)
+					return false
+				} else {
+					this.show = true
+				}
 			},
 			onTabCgnage(e) {
 				this.CouponType = e
-				// this.addOrderStatus()
-				this.addParams({
-					CouponType: this.CouponType - 1,
-					StartTime: this.StartTime,
-					EndTime: this.EndTime
-				})
-				this.resetList()
+				this.PageIndex = 1
+				this.show = false
+				this.addOrderStatus()
 			}
 		}
 	}
@@ -273,6 +224,8 @@
 			justify-content: space-between;
 			font-size: 32upx;
 			padding: 20px 20px 0 20upx;
+
+			.title {}
 
 			image {
 				width: 40upx;
@@ -335,11 +288,14 @@
 		flex: 1;
 		width: 100%;
 		overflow: auto;
-		// padding-bottom: 100upx;
+		padding-bottom: 120upx;
 	}
 
 	.pagination {
-		height: 100upx;
+		// height: 100upx;
+		width: 100%;
+		position: fixed;
+		bottom: 0;
 		line-height: 100upx;
 		text-align: center;
 		border-top-left-radius: 30upx;
