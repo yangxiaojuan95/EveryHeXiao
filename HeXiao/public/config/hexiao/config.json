@@ -5,13 +5,13 @@
   "loginPageSloganAnimation": true,
   "loginPageRigthsStartYear": 2023,
   "loginPageRigthsReserveCompany": "",
-  "loginPageLogo": "",
-  "loginPageLogoWidth": "199px",
-  "loginPageLogoHeight": "64px",
+  "loginPageLogo": "/imgs/logo.png",
+  "loginPageLogoWidth": "100px",
+  "loginPageLogoHeight": "100px",
   "loginPageBg": "/imgs/chuangheng/bg@3x.png",
 
   "navBarProjectName": "核销数字化管理系统",
-  "navBarLogo": "",
+  "navBarLogo": "/imgs/logo.png",
   "navBarLogoWidth": "120px",
   "navBarLogoHeight": "46px",
 
