@@ -1,6 +1,6 @@
 <script lang="tsx">
 export default {
-  name: 'UploadImg',
+  name: 'UploadList',
 }
 </script>
 
@@ -8,25 +8,30 @@ export default {
 import { computed, reactive, ref } from 'vue'
 import { Delete, Download, Plus, ZoomIn } from '@element-plus/icons-vue'
 import { processdRequest } from '@/utils/request'
-import { pathUrl } from '@/config';
+import { pathUrl } from '@/config'
 
 type Props = {
-  modelValue?: string
+  modelValue?: any
+  mult?: boolean
 }
 // 传入的参数
 const props = withDefaults(defineProps<Props>(), {
   modelValue: '',
 })
-
+let mult = ref(false)
 const fileList = computed(() => {
   // return props.modelValue?.split(',') ?? []
   //过滤fileList中的空字符串
-  console.log(props.modelValue,'props.modelValue')
-  return props.modelValue?.split(',').filter((item) => item) ?? []
+  mult.value = props.mult
+  return (
+    props.modelValue?.map((item: any) => {
+      return item.Image
+    }) ?? []
+  )
 })
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', val: string): void
+  (e: 'update:modelValue', val: any): void
 }>()
 
 const upload = async (param: { file: string | Blob }) => {
@@ -35,15 +40,38 @@ const upload = async (param: { file: string | Blob }) => {
   const url = `/api/Upload/UploadImage?type=0`
   const result = await processdRequest.post(url, formData)
   if (result[0]) {
-    let newFileList = [...fileList.value, result[0]]
-    emit('update:modelValue', newFileList.join(','))
+    let newFileList = ref([])
+    console.log(fileList.value, typeof fileList.value)
+    if (fileList.value) {
+      newFileList.value = [...fileList.value, result[0]]
+    } else {
+      newFileList.value = [result[0]]
+    }
+
+    // emit('update:modelValue', newFileList.join(','))
+    emit(
+      'update:modelValue',
+      newFileList.value.map((item) => {
+        return {
+          Image: item,
+        }
+      })
+    )
   }
 }
 
 const deleteImg = (index: any) => {
   let newFileList = [...fileList.value]
   newFileList.splice(index, 1)
-  emit('update:modelValue', newFileList.join(','))
+  // emit('update:modelValue', newFileList.join(','))
+  emit(
+    'update:modelValue',
+    newFileList.map((item) => {
+      return {
+        Image: item,
+      }
+    })
+  )
 }
 </script>
 
@@ -66,7 +94,13 @@ const deleteImg = (index: any) => {
       action=""
       :http-request="upload"
     >
-      <el-icon class="avatar-uploader-icon">
+      <el-icon
+        v-if="props.mult == false && fileList.length < 1"
+        class="avatar-uploader-icon"
+      >
+        <Plus />
+      </el-icon>
+      <el-icon v-if="props.mult == true" class="avatar-uploader-icon">
         <Plus />
       </el-icon>
     </el-upload>

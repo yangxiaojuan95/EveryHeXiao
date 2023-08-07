@@ -8,10 +8,10 @@ export default {
 import { computed, reactive, ref } from 'vue'
 import { Delete, Download, Plus, ZoomIn } from '@element-plus/icons-vue'
 import { processdRequest } from '@/utils/request'
-import { pathUrl } from '@/config';
+import { pathUrl } from '@/config'
 
 type Props = {
-  modelValue?: string,
+  modelValue?: any
   mult?: boolean
 }
 // 传入的参数
@@ -23,8 +23,8 @@ const fileList = computed(() => {
   // return props.modelValue?.split(',') ?? []
   //过滤fileList中的空字符串
   mult.value = props.mult
-  console.log(props.modelValue,'props.modelValue')
-  return props.modelValue?.split(',').filter((item) => item) ?? []
+  console.log(props.modelValue, 'props.modelValue')
+  return props.modelValue?.split(',').filter((item: any) => item) ?? []
 })
 
 const emit = defineEmits<{
@@ -68,10 +68,13 @@ const deleteImg = (index: any) => {
       action=""
       :http-request="upload"
     >
-      <el-icon v-if="props.mult==false&&fileList.length<1" class="avatar-uploader-icon">
+      <el-icon
+        v-if="props.mult == false && fileList.length < 1"
+        class="avatar-uploader-icon"
+      >
         <Plus />
       </el-icon>
-      <el-icon v-if="props.mult==true" class="avatar-uploader-icon">
+      <el-icon v-if="props.mult == true" class="avatar-uploader-icon">
         <Plus />
       </el-icon>
     </el-upload>
