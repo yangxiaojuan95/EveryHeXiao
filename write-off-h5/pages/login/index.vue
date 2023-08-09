@@ -131,7 +131,7 @@
 						Type: this.type,
 						Name: this.name,
 						Password: md5(this.password),
-						// KeyCode: '360DA812C9143A31F551999E52AC99000F74651B2AD41F20F5A3797E27AD8BF2F2F4CB5A88C7F4BDBEA4D1A3D6645759'
+						// KeyCode: '074C2F9993957A27353FFF270770182D8CABD381AAD1C3900B31F46938805337A9A506DEC43D0AAFA62C8AC433EA5712'
 					}, {
 						header: {
 							'content-type': 'application/x-www-form-urlencoded'

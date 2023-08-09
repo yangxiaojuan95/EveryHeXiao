@@ -44,7 +44,7 @@
 		</view>
 
 		<uni-popup ref="popup" type="center">
-			<Information class="popup" :order="order"></Information>
+			<Information class="popup" :order="order" @handleApproval="handleApproval"></Information>
 		</uni-popup>
 	</view>
 </template>
@@ -52,7 +52,8 @@
 <script>
 	import {
 		GetApprovalRecordsAjax,
-		GetScanCouponGetDetailAjax
+		GetScanCouponGetDetailAjax,
+		PostApprovalCouponAjax
 	} from '@/apis/api/modules/write-off'
 	import SwiperTab from '@/frame/components/swiper-tab/index.vue'
 	import SearchHeader from '@/components/search-header/index.vue'
@@ -117,17 +118,13 @@
 		async onLoad(e) {
 			// 获取列表数据
 			this.addOrderStatus()
-			// let hexiao = uni.getStorageSync("hexiao");
-			// let hexiaos = JSON.parse(hexiao);
-			// this.hexiaoId = hexiaos
 			this.hexiaoId = e?.data || ''
-			// this.hexiaoId = 'ed13cc94-23ef-ed11-97f0-f5437e275830'
+			// this.hexiaoId = 'e374729a-dc35-ee11-988d-b565010bf522'
 			if (this.hexiaoId !== '') {
 				const result = await GetScanCouponGetDetailAjax({
 					couponID: this.hexiaoId,
 					token: true
 				})
-				console.log(result, 'result')
 				this.order = result.Result
 				this.$refs.popup.open()
 			}
@@ -204,6 +201,19 @@
 				this.PageIndex = 1
 				this.show = false
 				this.addOrderStatus()
+			},
+			async handleApproval() {
+				await PostApprovalCouponAjax({
+					couponID: this.hexiaoId,
+					Price: 0,
+					token: true
+				})
+				uni.showToast({
+					title: '核销成功！',
+					icon: 'none'
+				})
+				this.hexiaoId = ''
+				this.$refs.popup.open()
 			}
 		}
 	}
