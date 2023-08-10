@@ -1,13 +1,18 @@
 <script lang="tsx">
 export default {
-    name: "RecordsDetail",
-    components: { PageModelForm }
+  name: 'RecordsDetail',
+  components: { PageModelForm },
 }
 </script>
 
 <script setup lang="tsx">
-import { FormDialog , PageModelForm, defineConfig, defineForm} from '@juzhenfe/page-model'
-import { ref , nextTick} from 'vue'
+import {
+  FormDialog,
+  PageModelForm,
+  defineConfig,
+  defineForm,
+} from '@juzhenfe/page-model'
+import { ref, nextTick } from 'vue'
 import * as echarts from 'echarts'
 import { processdRequest } from '@/utils/request'
 import { table } from 'console'
@@ -17,15 +22,22 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 let visable = ref(false)
 let tableList = ref()
 let recordsID = ref()
-const show =async (id: any) => {
+const show = async (id: any) => {
   recordsID.value = id
   visable.value = true
-  getData()
-} 
+  config.otherParams = {
+    RecordsID: id,
+  }
+  nextTick(() => {
+    refreshTableData(true)
+  })
+  // getData()
+}
 
-const getData =async () => {
-  const result = await processdRequest.post(
-    `/api/BackRecords/RecordsDetail?RecordsID=${recordsID.value}`)
+const getData = async () => {
+  const result = await processdRequest.get(`/api/BackRecords/RecordsDetail`, {
+    RecordsID: recordsID.value,
+  })
   tableList.value = result
   nextTick(() => {
     handlePerformanceChart()
@@ -38,110 +50,111 @@ const getData =async () => {
  * 部门费用占比
  */
 const handlePerformanceChart = () => {
-  let OrderType = echarts.init(document.getElementById('detailModel'));
-  document.getElementById('detailModel').setAttribute('_echarts_instance_', '');
+  let OrderType = echarts.init(document.getElementById('detailModel'))
+  document.getElementById('detailModel').setAttribute('_echarts_instance_', '')
   OrderType.setOption({
     title: {
-      text: '部门费用占比'
+      text: '部门费用占比',
     },
-  tooltip: {
-    trigger: 'item'
-  },
-  legend: {
-    orient: 'horizontal',
-    // left: 'left',
-    bottom: 0,
-  },
-  series: [
-    {
-      name: '部门费用占比',
-      type: 'pie',
-      radius: '50%',
-      data: [
-        // { value: tableList.value.DetailModel.FFCount, name: '发放' },
-        // { value: tableList.value.DetailModel.LQCount, name: '领取' },
-        // { value: tableList.value.DetailModel.HXCount, name: '核销' },
-        // { value: tableList.value.DetailModel.GQCount, name: '过期' },
-        {
-          value: tableList.value.DetailModel.FFCount,
-          name: '发放',
-          label: {
+    tooltip: {
+      trigger: 'item',
+    },
+    legend: {
+      orient: 'horizontal',
+      // left: 'left',
+      bottom: 0,
+    },
+    series: [
+      {
+        name: '部门费用占比',
+        type: 'pie',
+        radius: '50%',
+        data: [
+          // { value: tableList.value.DetailModel.FFCount, name: '发放' },
+          // { value: tableList.value.DetailModel.LQCount, name: '领取' },
+          // { value: tableList.value.DetailModel.HXCount, name: '核销' },
+          // { value: tableList.value.DetailModel.GQCount, name: '过期' },
+          {
+            value: tableList.value.DetailModel.FFCount,
+            name: '发放',
+            label: {
               // 单独显示该数据项
               show: true,
               formatter: `${tableList.value.DetailModel.FFCount}`,
               position: 'outer',
-              fontSize: 15
-          }
-        },
-        {
-          value: tableList.value.DetailModel.LQCount,
-          name: '领取',
-          label: {
+              fontSize: 15,
+            },
+          },
+          {
+            value: tableList.value.DetailModel.LQCount,
+            name: '领取',
+            label: {
               // 单独显示该数据项
               show: true,
               formatter: `${tableList.value.DetailModel.LQCount}`,
               position: 'outer',
-              fontSize: 15
-          }
-        },
-        {
-          value: tableList.value.DetailModel.HXCount,
-          name: '核销',
-          label: {
+              fontSize: 15,
+            },
+          },
+          {
+            value: tableList.value.DetailModel.HXCount,
+            name: '核销',
+            label: {
               // 单独显示该数据项
               show: true,
               formatter: `${tableList.value.DetailModel.HXCount}`,
               position: 'outer',
-              fontSize: 15
-          }
-        },
-        {
-          value: tableList.value.DetailModel.GQCount,
-          name: '过期',
-          label: {
+              fontSize: 15,
+            },
+          },
+          {
+            value: tableList.value.DetailModel.GQCount,
+            name: '过期',
+            label: {
               // 单独显示该数据项
               show: true,
               formatter: `${tableList.value.DetailModel.GQCount}`,
               position: 'outer',
-              fontSize: 15
-          }
-        }
-      ],
-      emphasis: {
-        itemStyle: {
-          shadowBlur: 10,
-          shadowOffsetX: 0,
-          shadowColor: 'rgba(0, 0, 0, 0.5)'
-        }
-      }
-    }
-  ]
-})
-  window.onresize = function () { // 自适应大小
-    OrderType.resize();
-  };
+              fontSize: 15,
+            },
+          },
+        ],
+        emphasis: {
+          itemStyle: {
+            shadowBlur: 10,
+            shadowOffsetX: 0,
+            shadowColor: 'rgba(0, 0, 0, 0.5)',
+          },
+        },
+      },
+    ],
+  })
+  window.onresize = function () {
+    // 自适应大小
+    OrderType.resize()
+  }
 }
 /**
  * 核销详情
  */
 const handleListModel = () => {
-  let OrderType = echarts.init(document.getElementById('listModel'));
-  document.getElementById('listModel').setAttribute('_echarts_instance_', '');
+  let OrderType = echarts.init(document.getElementById('listModel'))
+  document.getElementById('listModel').setAttribute('_echarts_instance_', '')
   OrderType.setOption({
     title: {
-      text: '核销详情'
+      text: '核销详情',
     },
     xAxis: {
       type: 'category',
       data: tableList.value.List.map((item: any) => {
         return item.ShopName
-      })
+      }),
     },
     legend: {
       data: ['核销数'],
       orient: 'horizontal', // 设置为水平布局
       left: 'center', // 水平居中
-      bottom: 0 // 底部对齐
+      bottom: 0, // 底部对齐
     },
     yAxis: {
       type: 'value',
@@ -150,16 +163,17 @@ const handleListModel = () => {
     series: [
       {
         data: tableList.value.List.map((item: any) => {
-        return item.Count
-      }),
+          return item.Count
+        }),
         type: 'bar',
-        name: '核销数'
-      }
-    ]
-    })
-  window.onresize = function () { // 自适应大小
-    OrderType.resize();
-  };
+        name: '核销数',
+      },
+    ],
+  })
+  window.onresize = function () {
+    // 自适应大小
+    OrderType.resize()
+  }
 }
 
 let pageModelRef = ref()
@@ -167,14 +181,38 @@ let currentSelections: any[] = []
 const config = defineConfig<any>({
   reflect: true,
   isAutoAddButton: false,
-  // getUrl: `/api/BackRecords/RecordsDetail?RecordsID=${recordsID.value}`,
+  getUrl: `/api/BackRecords/RecordsDetail`,
+  getMethod: 'get',
   addUrl: '/api/BackRecords/RecordsReissue',
   getReqResultProcessFn(result) {
     tableList.value = result
+    nextTick(() => {
+      handlePerformanceChart()
+      handleListModel()
+    })
+
     return {
       list: result.DetailList,
-      total: result.total
+      total: result.total,
     }
+  },
+  otherParams: {
+    RecordsID: '',
+  },
+  searchForm: {
+    // initialData: {
+    //   RecordsID: recordsID.value,
+    // },
+    els: [
+      {
+        eType: 'el-input',
+        prop: 'Keyword',
+        props: {
+          placeholder: '姓名/手机号',
+          clearable: true,
+        },
+      },
+    ],
   },
   table: {
     selectable: true,
@@ -182,15 +220,15 @@ const config = defineConfig<any>({
       {
         text: '补发',
         event: 'record',
-        props :{
-          type: 'primary'
-        }
-      }
+        props: {
+          type: 'primary',
+        },
+      },
     ],
     props: {
       stripe: true,
       border: true,
-      rowKey: 'UserID'
+      rowKey: 'UserID',
     },
     // selectable: true,
     // selectableButtons: [
@@ -205,28 +243,28 @@ const config = defineConfig<any>({
     // 表格操作栏
     operate: {
       props: {
-        fixed: 'right'
+        fixed: 'right',
       },
       width: '80px',
       els: [
         // {
-          // text: '补发',
-          // event: 'record',
-          // props: {
-          //   link: true,
-          //   type: "primary",
-          // }
+        // text: '补发',
+        // event: 'record',
+        // props: {
+        //   link: true,
+        //   type: "primary",
+        // }
         // },
         {
           text: '删除',
-          event: 'delete'
-        }
-      ]
+          event: 'delete',
+        },
+      ],
     },
     events: {
       selectionChange(selections) {
         currentSelections = selections
-      }
+      },
     },
     els: [
       {
@@ -245,18 +283,22 @@ const config = defineConfig<any>({
         prop: 'IsReceive',
         label: '是否领取',
         renderFn(row) {
-          return <el-tag type={row.IsReceive?'success':'error'}>{row.IsReceive?'已领取':'未领取'}</el-tag>
-        }
-      }
-    ]
+          return (
+            <el-tag type={row.IsReceive ? 'success' : 'error'}>
+              {row.IsReceive ? '已领取' : '未领取'}
+            </el-tag>
+          )
+        },
+      },
+    ],
   },
   form: {
     mode: 'dialog',
     props: {
-      labelWidth: '60px'
+      labelWidth: '60px',
     },
     dialogProps: {
-      width: '300px'
+      width: '300px',
     },
     beforeSubmit(formData) {
       formData.RecordsID = recordsID.value
@@ -269,8 +311,8 @@ const config = defineConfig<any>({
         eType: 'el-input',
         props: {
           placeholder: '请输入姓名',
-          clearable: true
-        }
+          clearable: true,
+        },
       },
       {
         label: '手机号',
@@ -278,8 +320,8 @@ const config = defineConfig<any>({
         eType: 'el-input',
         props: {
           placeholder: '请输入手机号',
-          clearable: true
-        }
+          clearable: true,
+        },
       },
       {
         label: '部门',
@@ -287,40 +329,45 @@ const config = defineConfig<any>({
         eType: 'el-select',
         props: {
           placeholder: '请选择部门',
-          clearable: true
+          clearable: true,
         },
         optionsData: {
-          list: [{
-            label: '男装',
-            value: '男装',
-          },{
-            label: '女装',
-            value: '女装',
-          },{
-            label: '童装',
-            value: '童装',
-          },{
-            label: '乐町',
-            value: '乐町',
-          }],
+          list: [
+            {
+              label: '男装',
+              value: '男装',
+            },
+            {
+              label: '女装',
+              value: '女装',
+            },
+            {
+              label: '童装',
+              value: '童装',
+            },
+            {
+              label: '乐町',
+              value: '乐町',
+            },
+          ],
           label: 'label',
-          value: 'value'
+          value: 'value',
         },
         style: {
-          width : '100%'
-        }
-      }
-    ]
-  }
+          width: '100%',
+        },
+      },
+    ],
+  },
 })
 
 const form = defineForm<any>({
   mode: 'dialog',
   props: {
-    labelWidth: '60px'
+    labelWidth: '60px',
   },
   dialogProps: {
-    width: '300px'
+    width: '300px',
   },
   beforeSubmit(formData) {
     formData.RecordsID = recordsID.value
@@ -333,8 +380,8 @@ const form = defineForm<any>({
       eType: 'el-input',
       props: {
         placeholder: '请输入姓名',
-        clearable: true
-      }
+        clearable: true,
+      },
     },
     {
       label: '手机号',
@@ -342,8 +389,8 @@ const form = defineForm<any>({
       eType: 'el-input',
       props: {
         placeholder: '请输入手机号',
-        clearable: true
-      }
+        clearable: true,
+      },
     },
     {
       label: '部门',
@@ -351,30 +398,35 @@ const form = defineForm<any>({
       eType: 'el-select',
       props: {
         placeholder: '请选择部门',
-        clearable: true
+        clearable: true,
       },
       optionsData: {
-        list: [{
-          label: '男装',
-          value: '男装',
-        },{
-          label: '女装',
-          value: '女装',
-        },{
-          label: '童装',
-          value: '童装',
-        },{
-          label: '乐町',
-          value: '乐町',
-        }],
+        list: [
+          {
+            label: '男装',
+            value: '男装',
+          },
+          {
+            label: '女装',
+            value: '女装',
+          },
+          {
+            label: '童装',
+            value: '童装',
+          },
+          {
+            label: '乐町',
+            value: '乐町',
+          },
+        ],
         label: 'label',
-        value: 'value'
+        value: 'value',
       },
       style: {
-        width : '100%'
-      }
-    }
-  ]
+        width: '100%',
+      },
+    },
+  ],
 })
 
 const refreshTableData = (clear: boolean = false) => {
@@ -382,19 +434,17 @@ const refreshTableData = (clear: boolean = false) => {
   clear && pageModelRef.value.clearSelection()
 }
 
-const handleExport =async () => {
+const handleExport = async () => {
   const result = await processdRequest.post(
-    `/api/BackRecords/RecordsByOutput?RecordsID=${recordsID.value}`,
+    `/api/BackRecords/RecordsByOutput?RecordsID=${recordsID.value}`
   )
   window.location.href = `${pathUrl}${result}`
-};
-const hide = () => {
-
 }
+const hide = () => {}
 
 let isShow = ref(false)
 let pageModelFormRef = ref()
-const handleRecord =async () => {
+const handleRecord = async () => {
   isShow.value = true
   // await pageModelRef.value.handleAddEvent()
 }
@@ -402,69 +452,71 @@ const handleIsShow = () => {
   pageModelFormRef.value.setFormData({})
   isShow.value = false
 }
-const submit =async () => {
+const submit = async () => {
   const formData = await pageModelFormRef.value.getFormData()
-  await processdRequest.post(
-    '/api/BackRecords/RecordsReissue',
-    formData
-  )
+  await processdRequest.post('/api/BackRecords/RecordsReissue', formData)
   ElMessage.success('补发成功！')
   handleIsShow()
-  getData()
+  // getData()
+  refreshTableData(true)
 }
 const handleDelete = async (row: any) => {
-  await ElMessageBox.confirm('是否确认删除？','确认',{
-    type: 'error'
+  await ElMessageBox.confirm('是否确认删除？', '确认', {
+    type: 'error',
   })
-  await processdRequest.get(
-    '/api/BackRecords/RecordsIncorrectDistribution',
-    {
-      DetailID: row.DetailID
-    }
-  )
+  await processdRequest.get('/api/BackRecords/RecordsIncorrectDistribution', {
+    DetailID: row.DetailID,
+  })
   ElMessage.success('删除成功！')
-  getData()
+  // getData()
+  refreshTableData(true)
 }
 
 defineExpose({
-    show
+  show,
 })
 </script>
 
 <template>
   <el-dialog v-model="visable">
     <div class="tubiao">
-      <div id="listModel" :style="{width: '50%', height: '350px'}"></div>
-      <div id="detailModel" :style="{width: '50%', height: '350px'}"></div>
+      <div id="listModel" :style="{ width: '50%', height: '350px' }"></div>
+      <div id="detailModel" :style="{ width: '50%', height: '350px' }"></div>
     </div>
     <div class="account">
       <div class="title">
         <div>领取详情</div>
-        <div><el-button type="primary" @click="handleExport">导出</el-button></div>
+        <div>
+          <el-button type="primary" @click="handleExport">导出</el-button>
+        </div>
       </div>
-      <page-model ref="pageModelRef" :config="config" @export="handleExport" @record="handleRecord" @delete="handleDelete"></page-model>
-      <el-dialog v-model="isShow" width="30%" >
+      <page-model
+        ref="pageModelRef"
+        :config="config"
+        @export="handleExport"
+        @record="handleRecord"
+        @delete="handleDelete"
+      ></page-model>
+      <el-dialog v-model="isShow" width="30%">
         <PageModelForm :form="form" ref="pageModelFormRef"></PageModelForm>
         <template #footer>
           <el-button @click="handleIsShow">取消</el-button>
           <el-button type="primary" @click="submit">确认</el-button>
         </template>
       </el-dialog>
-      
     </div>
-    
   </el-dialog>
 </template>
 
 <style lang="scss">
-.tubiao{
+.tubiao {
   display: flex;
   justify-content: space-between;
 }
-.account{
+.account {
   height: 300px;
   margin-bottom: 30px;
-  .title{
+  .title {
     margin: 0 20px;
     color: #444444;
     font-size: 18px;
