@@ -8,21 +8,37 @@
 				<view class="title">核销记录</view>
 				<view class="">{{ShopName}}</view>
 			</view>
-			<view class="time">
-				<picker mode="date" class="querys" v-model="StartTime" @change="handleStartTime">
-					<view class="clear-btn">
-						<input type="serch" :value="StartTime" placeholder="起始时间" placeholder-class="placeholder" disabled>
-						<!-- <icon class="search-clear-buttons" v-if="StartTime"
-							@click.stop="close(clera = 'CreationTime')" type="clear" :size="14"></icon> -->
+			<view class="times">
+				<view class="time">
+					<view class="">
+						<picker mode="date" class="querys" v-model="StartDate" @change="handleStartDate">
+							<view class="clear-btn">
+								<input type="serch" :value="StartDate" placeholder="起始日期" placeholder-class="placeholder" disabled>
+								<!-- <icon class="search-clear-buttons" v-if="StartTime"
+								@click.stop="close(clera = 'CreationTime')" type="clear" :size="14"></icon> -->
+							</view>
+						</picker>
+						<picker mode="date" class="querys" v-model="EndDate" @change="handleEndDate">
+							<view class="clear-btn">
+								<input type="serch" :value="EndDate" placeholder="结束日期" placeholder-class="placeholder" disabled>
+								<!-- <icon class="search-clear-buttons" v-if="EndTime" @click.stop="close(clera = 'LeaveTime')"
+								type="clear" :size="14"></icon> -->
+							</view>
+						</picker>
 					</view>
-				</picker>
-				<picker mode="date" class="querys" v-model="EndTime" @change="handleEndTime">
-					<view class="clear-btn">
-						<input type="serch" :value="EndTime" placeholder="结束时间" placeholder-class="placeholder" disabled>
-						<!-- <icon class="search-clear-buttons" v-if="EndTime" @click.stop="close(clera = 'LeaveTime')"
-							type="clear" :size="14"></icon> -->
+					<view class="">
+						<picker mode="time" class="querys" :value="StartTime" @change="handleStartTime">
+							<!-- <view class="uni-input">{{time}}</view> -->
+							<input type="serch" :value="StartTime" placeholder="起始时间" placeholder-class="placeholder" disabled>
+						</picker>
+						<picker mode="time" class="querys" :value="EndTime" @change="handleEndTime">
+							<input type="serch" :value="EndTime" placeholder="结束时间" placeholder-class="placeholder" disabled>
+						</picker>
 					</view>
-				</picker>
+				</view>
+
+
+				<!--  start="09:01" end="21:01" -->
 				<view class="button" @click="handleData">筛选</view>
 			</view>
 			<!-- tab栏 -->
@@ -107,7 +123,9 @@
 				PageIndex: 1,
 				PageSize: 10,
 				CouponType: 0,
+				StartDate: null,
 				StartTime: null,
+				EndDate: null,
 				EndTime: null,
 				ShopName: null,
 				list: {},
@@ -133,9 +151,14 @@
 			this.ShopName = uni.getStorageSync("ShopName");
 		},
 		methods: {
+			async handleStartDate(e) {
+				this.StartDate = e.detail.value
+			},
 			async handleStartTime(e) {
-				console.log(e)
 				this.StartTime = e.detail.value
+			},
+			async handleEndDate(e) {
+				this.EndDate = e.detail.value
 			},
 			async handleEndTime(e) {
 				this.EndTime = e.detail.value
@@ -156,10 +179,18 @@
 			async addOrderStatus() {
 				this.PageIndex = 1
 				this.show = false
+				let start = `${this.StartDate} ${this.StartTime}`
+				if (this.StartDate == null || this.StartTime == null) {
+					start = null
+				}
+				let end = `${this.EndDate} ${this.EndTime}`
+				if (this.EndDate == null || this.EndTime == null) {
+					end = null
+				}
 				const loginResult = await GetApprovalRecordsAjax({
 					CouponType: this.CouponType - 1,
-					StartTime: this.StartTime,
-					EndTime: this.EndTime,
+					StartTime: start,
+					EndTime: end,
 					PageIndex: this.PageIndex,
 					PageSize: this.PageSize,
 					token: true
@@ -176,10 +207,19 @@
 					return false
 				}
 				this.PageIndex = this.PageIndex + 1
+
+				let start = `${this.StartDate} ${this.StartTime}`
+				if (this.StartDate == null || this.StartTime == null) {
+					start = null
+				}
+				let end = `${this.EndDate} ${this.EndTime}`
+				if (this.EndDate == null || this.EndTime == null) {
+					end = null
+				}
 				const result = await GetApprovalRecordsAjax({
 					CouponType: this.CouponType - 1,
-					StartTime: this.StartTime,
-					EndTime: this.EndTime,
+					StartTime: start,
+					EndTime: end,
 					PageIndex: this.PageIndex,
 					PageSize: this.PageSize,
 					token: true
@@ -243,6 +283,24 @@
 			}
 		}
 
+		.times {
+			margin: 0 30rpx;
+
+			.button {
+				width: 640rpx;
+				// width: 100upx;
+				height: 50upx;
+				background: #2258bd;
+				color: #fff;
+				text-align: center;
+				line-height: 50upx;
+				padding: 10upx 20upx;
+				margin-right: 10upx;
+				box-shadow: 0rpx 4rpx 16rpx 0rpx #e1e1e1;
+				border-radius: 40upx;
+			}
+		}
+
 		.time {
 			display: flex;
 			justify-content: space-between;
@@ -263,19 +321,6 @@
 				line-height: 40upx;
 				border: 1px solid #EFF1F8;
 				margin-right: 10upx;
-			}
-
-			.button {
-				width: 100upx;
-				height: 50upx;
-				background: #2258bd;
-				color: #fff;
-				text-align: center;
-				line-height: 50upx;
-				padding: 10upx 20upx;
-				margin-right: 10upx;
-				box-shadow: 0rpx 4rpx 16rpx 0rpx #e1e1e1;
-				border-radius: 40upx;
 			}
 		}
 

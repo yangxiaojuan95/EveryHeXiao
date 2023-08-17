@@ -1,0 +1,38 @@
+	.order-address-detail {
+		
+	}
+	
+	.address-item {
+		padding: 20upx 0;
+		@include flex;
+		background-color: #fff;
+		
+		& + .address-item {
+			// border-top: 2upx solid $border-color;
+			// border-bottom: 2upx solid $border-color;
+		}
+	}
+	
+	.address-icon {
+		width: 48upx;
+		height: 48upx;
+		margin-top: 20upx;
+		margin-right: 20upx;
+		flex-shrink: 0;
+	}
+	
+	.address-user-info {
+		font-size: 32upx;
+		font-weight: 500;
+	}
+	
+	.address-user-name {
+		margin-right: 20upx;
+	}
+	
+	.address-detail {
+		margin-top: 12upx;
+		color: #A3A7B3;
+		font-size: 26upx;
+		
+	}
